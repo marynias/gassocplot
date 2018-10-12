@@ -591,7 +591,7 @@ add_g_legend <- function(g, legend){
 #' @import ggplot2 grid gridExtra gtable
 #' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
-stack_assoc_plot <- function(markers, z, corr=NULL, traits, x.min=NULL, x.max=NULL, top.marker=NULL, legend=TRUE){
+stack_assoc_plot <- function(markers, z, corr=NULL, traits, x.min=NULL, x.max=NULL, top.marker=NULL, legend=TRUE, type="log10p"){
   
   # Error messages
   if(length(traits)!=ncol(z)) stop("the number of traits is not the same as the number of columns for the Z-scores")
@@ -614,8 +614,11 @@ stack_assoc_plot <- function(markers, z, corr=NULL, traits, x.min=NULL, x.max=NU
   if((x.max - x.min)>5000000) stop("the plotting tool can plot a maximum of 5MB")
 
   # mlog10p
+  if(type=="log10p"){
   mlog10p <- suppressWarnings(apply(z, 2, function(x){-(log(2) + pnorm(-abs(x), log.p=T))/log(10)}))
-  mlog10p[mlog10p>1000 & !is.na(mlog10p)] <- 1000
+  mlog10p[mlog10p>1000 & !is.na(mlog10p)] <- 1000}
+  else if (type=="prob") {mlog10p <- z}
+ 
  
   # Genes
   gene.region <- genes[genes$chr==chr & !(genes$end<x.min) & !(genes$start>x.max),]
