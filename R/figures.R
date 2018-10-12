@@ -425,7 +425,7 @@ assoc_plot_save <- function(x, file, width=9, height=7){
 #' @import ggplot2
 #' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
-plot_assoc_stack <- function(data, corr, x.min, x.max, top.marker, type=log10p){
+plot_assoc_stack <- function(data, corr, x.min, x.max, top.marker, type){
   miss <- is.na(data$mlog10p)
   corr <- corr[!miss, !miss]
   data <- data[!miss,]
