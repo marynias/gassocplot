@@ -209,15 +209,15 @@ plot_assoc <- function(data, corr, x.min, x.max, ylab, type="log10p"){
   if((x.max-lead_marker$pos)<10000){lead_marker$label_pos <- lead_marker$pos - 0.025*(x.max-x.min)}
   if((lead_marker$pos-x.min)<10000){lead_marker$label_pos <- lead_marker$pos + 0.025*(x.max-x.min)}
   #r2 <- corr[,top_marker]^2
-  data$r2 <- "miss"
-  data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
-  data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
-  data$r2[r2>=0.4 & r2<=0.6 & !is.na(r2)] <- "0.4-0.6"
-  data$r2[r2>=0.6 & r2<=0.8 & !is.na(r2)] <- "0.6-0.8"
-  data$r2[r2>=0.8 & r2<=1 & !is.na(r2)] <- "0.8-1.0" 
-  data$r2 <- factor(data$r2, levels=c("miss", "0.0-0.2", "0.2-0.4", "0.4-0.6", "0.6-0.8", "0.8-1.0"))
+  #data$r2 <- "miss"
+  #data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
+  #data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
+  #data$r2[r2>=0.4 & r2<=0.6 & !is.na(r2)] <- "0.4-0.6"
+  #data$r2[r2>=0.6 & r2<=0.8 & !is.na(r2)] <- "0.6-0.8"
+  #data$r2[r2>=0.8 & r2<=1 & !is.na(r2)] <- "0.8-1.0" 
+  #data$r2 <- factor(data$r2, levels=c("miss", "0.0-0.2", "0.2-0.4", "0.4-0.6", "0.6-0.8", "0.8-1.0"))
   ylim <- max((max(data$stats)+0.1*max(data$stats)),1)
-  marker.plot <- ggplot(aes(x=pos, y=stats), data=data) + geom_point(aes(fill=r2), pch=21, size=3.5) + scale_fill_manual(values=c("#DCDCDC", "#66FFFF", "#66FF66", "#FFCC00", "#FF9933", "#CC3300", "#FF0000"), drop=FALSE) + geom_point(data=lead_marker, aes(pos,stats), pch=23, colour="black", fill="purple", size=4)  + theme_bw() + geom_text(data=lead_marker, aes(label_pos,stats,label=marker), vjust=-1, hjust=0.5, size=4.5) +  ylab(ylab) + xlab(NULL) + scale_y_continuous(limits=c(0,ylim)) + theme(axis.title.y=element_text(vjust=2.25, size=16), axis.text=element_text(size=14)) + theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank()) + scale_x_continuous(limits=c(x.min,x.max), breaks=NULL) + theme(axis.title=element_text(size=10)) + theme(legend.text=element_text(size=11), legend.title=element_text(size=12), legend.background = element_rect(colour = "black")) + theme(panel.background=element_rect(fill=NA)) + theme(legend.position="bottom") + guides(fill = guide_legend(nrow = 1))
+  marker.plot <- ggplot(aes(x=pos, y=stats), data=data) + geom_point(aes(fill="lightgrey"), pch=21, size=3.5) + scale_fill_manual(values=c("#DCDCDC", "#66FFFF", "#66FF66", "#FFCC00", "#FF9933", "#CC3300", "#FF0000"), drop=FALSE) + geom_point(data=lead_marker, aes(pos,stats), pch=23, colour="black", fill="purple", size=4)  + theme_bw() + geom_text(data=lead_marker, aes(label_pos,stats,label=marker), vjust=-1, hjust=0.5, size=4.5) +  ylab(ylab) + xlab(NULL) + scale_y_continuous(limits=c(0,ylim)) + theme(axis.title.y=element_text(vjust=2.25, size=16), axis.text=element_text(size=14)) + theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank()) + scale_x_continuous(limits=c(x.min,x.max), breaks=NULL) + theme(axis.title=element_text(size=10)) + theme(legend.text=element_text(size=11), legend.title=element_text(size=12), legend.background = element_rect(colour = "black")) + theme(panel.background=element_rect(fill=NA)) + theme(legend.position="bottom") + guides(fill = guide_legend(nrow = 1))
   if(type=="prob"){suppressMessages(marker.plot <- marker.plot + scale_y_continuous(limits=c(0,ylim), breaks=c(0, 0.25, 0.5, 0.75, 1)))}
   return(marker.plot)
 }
@@ -447,16 +447,16 @@ plot_assoc_stack <- function(data, corr, x.min, x.max, top.marker, type){
     geomtext <- T
   }
   #r2 <- corr[,top_marker]^2
-  data$r2 <- "miss"
-  data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
-  data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
-  data$r2[r2>=0.4 & r2<=0.6 & !is.na(r2)] <- "0.4-0.6"
-  data$r2[r2>=0.6 & r2<=0.8 & !is.na(r2)] <- "0.6-0.8"
-  data$r2[r2>=0.8 & r2<=1 & !is.na(r2)] <- "0.8-1.0" 
-  data$r2 <- factor(data$r2, levels=c("miss", "0.0-0.2", "0.2-0.4", "0.4-0.6", "0.6-0.8", "0.8-1.0"))
+  #data$r2 <- "miss"
+  #data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
+  #data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
+  #data$r2[r2>=0.4 & r2<=0.6 & !is.na(r2)] <- "0.4-0.6"
+  #data$r2[r2>=0.6 & r2<=0.8 & !is.na(r2)] <- "0.6-0.8"
+  #data$r2[r2>=0.8 & r2<=1 & !is.na(r2)] <- "0.8-1.0" 
+  #data$r2 <- factor(data$r2, levels=c("miss", "0.0-0.2", "0.2-0.4", "0.4-0.6", "0.6-0.8", "0.8-1.0"))
   ylim <- max((max(data$mlog10p)+0.2*max(data$mlog10p)),1)
   if(type=="log10p"){my_ylab <- expression("-log"["10"]*paste("(",italic("p"),")"))} else{my_ylab <- "Probability"} 
-  marker.plot <- ggplot(aes(x=pos,y=mlog10p), data=data) + geom_point(aes(fill=r2), pch=21, size=3) + scale_fill_manual(values=c("#DCDCDC", "#66FFFF", "#66FF66", "#FFCC00", "#FF9933", "#CC3300", "#FF0000"), drop=FALSE) + geom_point(data=lead_marker, aes(x=pos,y=mlog10p), pch=23, colour="black", fill="purple", size=4) + theme_bw() +  ylab(my_ylab) + xlab(NULL) + scale_y_continuous(limits=c(0,ylim)) + theme(axis.title.y=element_text(vjust=2.25, size=14), axis.text=element_text(size=12)) + theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank()) + scale_x_continuous(limits=c(x.min, x.max), breaks=NULL) + theme(axis.title=element_text(size=10)) + theme(legend.text=element_text(size=10), legend.title=element_text(size=12), legend.background = element_rect(colour = "black")) + theme(panel.background=element_rect(fill=NA)) + theme(legend.position="bottom") + guides(fill = guide_legend(nrow = 1))
+  marker.plot <- ggplot(aes(x=pos,y=mlog10p), data=data) + geom_point(aes(fill="lightgrey"), pch=21, size=3) + scale_fill_manual(values=c("#DCDCDC", "#66FFFF", "#66FF66", "#FFCC00", "#FF9933", "#CC3300", "#FF0000"), drop=FALSE) + geom_point(data=lead_marker, aes(x=pos,y=mlog10p), pch=23, colour="black", fill="purple", size=4) + theme_bw() +  ylab(my_ylab) + xlab(NULL) + scale_y_continuous(limits=c(0,ylim)) + theme(axis.title.y=element_text(vjust=2.25, size=14), axis.text=element_text(size=12)) + theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank()) + scale_x_continuous(limits=c(x.min, x.max), breaks=NULL) + theme(axis.title=element_text(size=10)) + theme(legend.text=element_text(size=10), legend.title=element_text(size=12), legend.background = element_rect(colour = "black")) + theme(panel.background=element_rect(fill=NA)) + theme(legend.position="bottom") + guides(fill = guide_legend(nrow = 1))
   if(type=="prob"){suppressMessages(marker.plot <- marker.plot + scale_y_continuous(limits=c(0,ylim), breaks=c(0, 0.25, 0.5, 0.75, 1)))}
   if(geomtext){marker.plot <- marker.plot + geom_text(data=lead_marker, aes(x=label_pos,y=mlog10p,label=marker), vjust=-1, hjust=0.5, size=4)}else{marker.plot <- marker.plot + geom_label(data=lead_marker, aes(x=label_pos,y=mlog10p,label=marker), label.r=unit(0, "lines"), nudge_y=(-0.07*ylim), size=4, alpha=1)}
   return(marker.plot)
