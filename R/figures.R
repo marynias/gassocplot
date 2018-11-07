@@ -208,7 +208,7 @@ plot_assoc <- function(data, corr, x.min, x.max, ylab, type="log10p"){
   lead_marker$label_pos <- lead_marker$pos
   if((x.max-lead_marker$pos)<10000){lead_marker$label_pos <- lead_marker$pos - 0.025*(x.max-x.min)}
   if((lead_marker$pos-x.min)<10000){lead_marker$label_pos <- lead_marker$pos + 0.025*(x.max-x.min)}
-  r2 <- corr[,top_marker]^2
+  #r2 <- corr[,top_marker]^2
   data$r2 <- "miss"
   data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
   data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
@@ -446,7 +446,7 @@ plot_assoc_stack <- function(data, corr, x.min, x.max, top.marker, type){
     if((lead_marker$pos-x.min)<10000){lead_marker$label_pos <- lead_marker$pos + 0.025*(x.max-x.min)}
     geomtext <- T
   }
-  r2 <- corr[,top_marker]^2
+  #r2 <- corr[,top_marker]^2
   data$r2 <- "miss"
   data$r2[r2<0.2 & !is.na(r2)] <- "0.0-0.2"
   data$r2[r2>=0.2 & r2<=0.4 & !is.na(r2)] <- "0.2-0.4"
